@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
+    <title></title>
+
+    <script src="libs/jquery/jquery-1.11.2.min.js"></script>
+    <!-- ie7及其以下没有JSON 需要引入json2-->
+    <script src="libs/json/json2.js"></script>
+    <!-- 引入bootstrap-->
+    <link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="libs/bootstrap/bootstrap.min.js"></script>
+    <!-- jquery pagination-->
+    <script src="libs/pagination/jquery.pagination.js"></script>
+    <!-- custom table css-->
+    <link rel="stylesheet" href="css/custom_table.css">
+    <!-- custom table js-->
+    <script src="js/createTable.js"></script>
+
+</head>
+<body>
+
+<div id="con_one_5" style="margin-left: 10px;margin-top: 10px;">
+</div>
+
+<!--table方法测试-->
+<div style="margin-top: 50px;margin-left: 20px;">table所有方法测试:
+    <span style="padding: 10px;background-color: darkgrey;" id="test-id">点击我进行测试</span>
+</div>
+
+<script type="text/javascript">
+
+    $("#con_one_5").createTableHtml({
+        url:"data/test.json",
+        method:"POST",//ajax请求的方式
+        width:"80%",//若没有给宽度,则默认是100%
+        height:"",//若没有给高度,那么会有一个默认高度
+
+        isShowCheckbox:false,//是否显示checkbox,注意,checkbox和radio只能显示其中一个或者全部都不显示,如果都为true,则全部不显示
+        isShowRadio:true,//是否显示radio
+
+        isShowPage:true,//是否显示分页,注意分页只能显示其中的一个,或者不显示,如果都选择true的话,就全部不显示
+        isShowPreNextPage:false,//是否显示pre,next分页
+
+        isShowBorderDivider:true,//是否展示border分割线
+
+        isShowRowNumbers:true,//是否展示行号
+
+        fitColumns:true,//是否自适应列的宽度,false的话,所有列宽超出table的宽度则会出现水平滚动条
+
+        checkColumn:[
+            {field:'ck',type:'string',title:"ck2",height:"34px",colspan:"1",rowspan:"1",textAlign:"center",
+                formatter:function(rowData,index,value){return "<font color=red>"+value+"</font>";}
+            }
+        ],
+        columns:[
+            {field:'buyPlanNum',type:'string',title:"范本1",width:"400px",height:"34px",colspan:"1",rowspan:"1",textAlign:"center",
+
+                formatter:function(rowData,index,value)
+                {
+                    if(value == "PL-SGS2013001"){
+
+                        return "<a style='color: red' onclick='test(this)'>test1</a>";
+                    }else{
+                        return value;
+                    }
+                }
+            },
+            {field:'buyPlanStatus',type:'string',title:"状态",width:"400px",height:"34px",colspan:"1",rowspan:"1",textAlign:"center"},
+            {field:'createBy',type:'string',title:"创建人",width:"400px",height:"34px",colspan:"1",rowspan:"1",textAlign:"center"},
+
+            {field:'buyPlanDescription',type:'string',title:"范本3",width:"400px",height:"34px",colspan:"1",rowspan:"1",textAlign:"center",
+
+                formatter:function(rowData,index,value)
+                {
+                    if(value == "描述3"){
+
+                        return "<a style='color: blue' onclick='test(this)'>test</a>";
+                    }else{
+                        return value;
+                    }
+                }
+            }
+        ],
+
+        //双击一行时触发
+        onDblClick:function(rowData,index){
+//            alert("onDblClick:" + index);
+        },
+
+        //单击一行是触发
+        onSglClick:function(rowData,index){
+//            alert("onSglClick:" + index);
+        },
+
+        //选中checkbox时触发
+        onCheckboxSelect:function(rowData,index){
+//            alert("onCheckboxSelect:" + index);
+        },
+
+        //取消选中checkbox时触发
+        oncheckboxUnSelect:function(rowData,index){
+//            alert("oncheckboxUnSelect:" + index);
+        },
+
+        //选中全部checkbox时触发
+        oncheckboxAllSelect:function(rowsData){
+//            alert("oncheckboxAllSelect:" + rowsData.length);
+        },
+
+        //取消全部checkbox时触发
+        oncheckboxAllUnSelect:function(rowsData){
+//            alert("oncheckboxAllUnSelect:" + rowsData.length);
+        },
+
+        //选中radio
+        onRadioSelect:function(rowData,index){
+//            alert("onRadioSelect:" + index);
+        },
+
+        //取消选中radio
+        onRadioUnSelect:function(rowData,index){
+//            alert("onRadioUnSelect:" + index);
+        },
+
+        //tr 选中
+        onSelect:function(rowData,index){
+//            alert("onSelect:" + index);
+        },
+
+        //tr 取消选中
+        onUnSelect:function(rowData,index){
+//            alert("onUnSelect:" + index);
+        },
+
+        //加载成功
+        onLoadSuccess:function(data){
+//            alert("onLoadSuccess");
+        },
+
+        onLoadError:function(error){
+
+        }
+
+    });
+
+
+    //方法测试
+    $("#test-id").on("click",function(){
+
+
+//        //进行重新加载行,不会改变table 头部和分页不会改变
+//        $("#con_one_5").createTableHtml('loadData',
+//            [
+//                {"ck":"001","buyPlanNum":"PL-SGS2013001","buyPlanName":"采购计划1","buyPlanDescription":"描述1","buyPlanStatus":"审批通过","createBy":"李勇","createDate":"2013-04-11"},
+//                {"ck":"002","buyPlanNum":"PL-SGS2013002","buyPlanName":"采购计划2","buyPlanDescription":"描述2","buyPlanStatus":"审批通过","createBy":"李勇","createDate":"2013-04-12"}
+//            ]
+//        );
+
+
+
+//        //取消选中table中所有的行
+//        $("#con_one_5").createTableHtml('unselectAll');
+
+
+
+//        //选中table中的某一行,注意传入的index要是字符串
+//        $("#con_one_5").createTableHtml('selectRow',"0");
+
+
+
+//        //往table的最后一行拼接行
+//        var rows = [{"ck":"001","buyPlanNum":"PL-SGS2013001","buyPlanName":"采购计划122","buyPlanDescription":"描述122","buyPlanStatus":"审批通过","createBy":"李勇","createDate":"2013-04-11"}];
+//        $("#con_one_5").createTableHtml('appendRow',rows);
+
+
+
+//        //删除table的某一行
+//        $("#con_one_5").createTableHtml('deleteRow',"2");
+
+
+
+//        //往table中插入行,注意index,就是传入行之后,新行的索引,index从0开始
+//        var rows = [
+//            {"ck":"001","buyPlanNum":"PL-SGS2013001","buyPlanName":"采购计划122","buyPlanDescription":"我是新行1","buyPlanStatus":"审批通过","createBy":"李勇","createDate":"2013-04-11"},
+//            {"ck":"001","buyPlanNum":"PL-SGS2013001","buyPlanName":"采购计划123","buyPlanDescription":"我是新行2","buyPlanStatus":"审批通过","createBy":"李勇","createDate":"2013-04-11"}
+//        ];
+//        $("#con_one_5").createTableHtml('insertRow',{"index":"9","rows":rows});
+
+
+
+//        //获取table 数据请求成功之后的数据
+//        var data = $("#con_one_5").createTableHtml('getData');
+//        alert("data.total:" + data.total);
+
+
+
+//        //更新table的行,这里只能更新一行,key需要固定的
+//        $("#con_one_5").createTableHtml('updateRow',{
+//            "index":"3",
+//            "row":[{"ck":"001","buyPlanNum":"PL-SGS2013001","buyPlanName":"采购计划123","buyPlanDescription":"我是新行3","buyPlanStatus":"审批通过","createBy":"李勇","createDate":"2013-04-11"}]
+//        });
+
+
+    });
+
+
+    function test(e){
+        stopPropagation(e);
+        alert("test!");
+    }
+
+    //点击子元素不会触发父元素
+    function stopPropagation(e){
+        if(e && e.stopPropagation){//非IE浏览器
+            e.stopPropagation();
+        }else{//IE浏览器
+            window.event.cancelBubble = true;
+        }
+    }
+
+</script>
+
+</body>
+</html>
