@@ -181,4 +181,5 @@ getSelected    none              获取选中的行。
 
 
 8.attention（注意）
+
 这里面的数据用的是本地的数据，所以下载项目并运行，出现错误的话，自己检查元素看看，有些会拦截本地数据，用i.e.打开，或者chrome，如果出现Origin null is not allowed by Access-Control-Allow-Origin，只需在html头部加上<meta http-equiv="Access-Control-Allow-Origin" content="*">
