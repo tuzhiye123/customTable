@@ -139,8 +139,11 @@
                     unselectBaseTrStyle(tr);
                 });
 
-                //取消全部选中回调
-                globalOption.oncheckboxAllUnSelect(rowsData);
+                if(globalOption.oncheckboxAllUnSelect){
+                    //取消全部选中回调
+                    globalOption.oncheckboxAllUnSelect(rowsData);
+                }
+
             }else{
 
                 $(elementIdString+' .cmcc_check_model1').each(function(){
@@ -153,8 +156,10 @@
                     selectBaseTrStyle(tr);
                 });
 
-                //全部选中回调
-                globalOption.oncheckboxAllSelect(rowsData);
+                if(globalOption.oncheckboxAllSelect){
+                    //全部选中回调
+                    globalOption.oncheckboxAllSelect(rowsData);
+                }
             }
         });
 
@@ -367,8 +372,10 @@
                 pageSize:""//页面显示条数
             },
             success: function (data) {
-                //options回调
-                globalOption.onLoadSuccess(data);
+                if(globalOption.onLoadSuccess){
+                    //options回调
+                    globalOption.onLoadSuccess(data);
+                }
                 //获取请求成功的数据条数
                 var rowsData = data.rows;
                 var pageCount = data.pageCount;
@@ -395,7 +402,9 @@
             },
             error:function(error){
                 alert("数据请求错误");
-                globalOption.onLoadError(error);
+                if(globalOption.onLoadError){
+                    globalOption.onLoadError(error);
+                }
             }
         });
     }
@@ -424,9 +433,13 @@
                 var unSelectRowData = rowsData[unSelectIndex];
                 //回调,如果是全选checkbox的话就不要回调
                 if(lableElmt.hasClass("checkAll"))return;
-                globalOption.oncheckboxUnSelect(unSelectRowData,unSelectIndex);
-                //取消选中
-                globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                if(globalOption.oncheckboxUnSelect){
+                    globalOption.oncheckboxUnSelect(unSelectRowData,unSelectIndex);
+                }
+                if(globalOption.onUnSelect){
+                    //取消选中
+                    globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                }
 
             }else{
                 lableElmt.addClass("cmcc_check_on1");
@@ -440,9 +453,14 @@
                 var selectRowData = rowsData[selectIndex];
                 //回调,如果是全选checkbox的话就不要回调
                 if(lableElmt.hasClass("checkAll"))return;
-                globalOption.onCheckboxSelect(selectRowData,selectIndex);
-                //选中
-                globalOption.onSelect(unSelectRowData,unSelectIndex);
+                if(globalOption.onCheckboxSelect){
+                    globalOption.onCheckboxSelect(selectRowData,selectIndex);
+                }
+                if(globalOption.onSelect){
+                    //选中
+                    globalOption.onSelect(unSelectRowData,unSelectIndex);
+                }
+
             }
         });
 
@@ -477,9 +495,13 @@
                 var unSelectIndex = $(tr).index();
                 //获取这一行的rowData
                 var unSelectRowData = rowsData[unSelectIndex];
-                globalOption.onRadioUnSelect(unSelectRowData,unSelectIndex);
-                //取消选中
-                globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                if(globalOption.onRadioUnSelect){
+                    globalOption.onRadioUnSelect(unSelectRowData,unSelectIndex);
+                }
+                if(globalOption.onUnSelect){
+                    //取消选中
+                    globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                }
 
             }else{
                 $(".cmcc_radio_model1").removeClass("cmcc_radio_on1");
@@ -496,9 +518,13 @@
                 var selectIndex = $(tr).index();
                 //获取这一行的rowData
                 var selectRowData = rowsData[selectIndex];
-                globalOption.onRadioSelect(selectRowData,selectIndex);
-                //选中
-                globalOption.onSelect(unSelectRowData,unSelectIndex);
+                if(globalOption.onRadioSelect){
+                    globalOption.onRadioSelect(selectRowData,selectIndex);
+                }
+                if(globalOption.onSelect){
+                    //选中
+                    globalOption.onSelect(unSelectRowData,unSelectIndex);
+                }
             }
         });
 
@@ -539,9 +565,13 @@
                         var unSelectIndex = myTarget.index();
                         //获取这一行的rowData
                         var unSelectRowData = rowsData[unSelectIndex];
-                        globalOption.oncheckboxUnSelect(unSelectRowData,unSelectIndex);
-                        //取消选中
-                        globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                        if(globalOption.oncheckboxUnSelect){
+                            globalOption.oncheckboxUnSelect(unSelectRowData,unSelectIndex);
+                        }
+                        if(globalOption.onUnSelect){
+                            //取消选中
+                            globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                        }
 
                     }else{
                         myTarget.children(0).children(0).children(0).addClass("cmcc_check_on1");
@@ -553,9 +583,13 @@
                         //获取这一行的rowData
                         var selectRowData = rowsData[selectIndex];
                         //回调,如果是全选checkbox的话就不要回调
-                        globalOption.onCheckboxSelect(selectRowData,selectIndex);
-                        //选中
-                        globalOption.onSelect(unSelectRowData,unSelectIndex);
+                        if(globalOption.onCheckboxSelect){
+                            globalOption.onCheckboxSelect(selectRowData,selectIndex);
+                        }
+                        if(globalOption.onSelect){
+                            //选中
+                            globalOption.onSelect(unSelectRowData,unSelectIndex);
+                        }
                     }
                 }
                 //有radio时,tr单击
@@ -571,9 +605,13 @@
                         var unSelectIndex = myTarget.index();
                         //获取这一行的rowData
                         var unSelectRowData = rowsData[unSelectIndex];
-                        globalOption.onRadioUnSelect(unSelectRowData,unSelectIndex);
-                        //取消选中
-                        globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                        if(globalOption.onRadioUnSelect){
+                            globalOption.onRadioUnSelect(unSelectRowData,unSelectIndex);
+                        }
+                        if(globalOption.onUnSelect){
+                            //取消选中
+                            globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                        }
 
                     }else{
 
@@ -593,9 +631,13 @@
                         var selectIndex = myTarget.index();
                         //获取这一行的rowData
                         var selectRowData = rowsData[selectIndex];
-                        globalOption.onRadioSelect(selectRowData,selectIndex);
-                        //选中
-                        globalOption.onSelect(unSelectRowData,unSelectIndex);
+                        if(globalOption.onRadioSelect){
+                            globalOption.onRadioSelect(selectRowData,selectIndex);
+                        }
+                        if(globalOption.onSelect){
+                            //选中
+                            globalOption.onSelect(unSelectRowData,unSelectIndex);
+                        }
                     }
 
                 }else{
@@ -607,8 +649,10 @@
 
                         var unSelectIndex = myTarget.index();
                         var unSelectRowData = rowsData[unSelectIndex];
-                        //options的回调
-                        globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                        if(globalOption.onUnSelect){
+                            //options的回调
+                            globalOption.onUnSelect(unSelectRowData,unSelectIndex);
+                        }
 
                     }else{
 
@@ -616,15 +660,19 @@
 
                         var selectIndex = myTarget.index();
                         var selectRowData = rowsData[selectIndex];
-                        //options的回调
-                        globalOption.onSelect(selectRowData,selectIndex);
+                        if(globalOption.onSelect){
+                            //options的回调
+                            globalOption.onSelect(selectRowData,selectIndex);
+                        }
                     }
                 }
 
                 var index = myTarget.index();
                 var rowData = rowsData[index];
-                //单击一行的回调
-                globalOption.onSglClick(rowData,index);
+                if(globalOption.onSglClick){
+                    //单击一行的回调
+                    globalOption.onSglClick(rowData,index);
+                }
 
             },200);
         });
@@ -637,8 +685,10 @@
             var index = $(this).index();
             //获取对应的row data
             var rowData = rowsData[index];
-            //双击一行回调
-            globalOption.onDblClick(rowData,index);
+            if(globalOption.onDblClick){
+                //双击一行回调
+                globalOption.onDblClick(rowData,index);
+            }
         });
     }
 
@@ -827,9 +877,9 @@
                             //判断是否有formatter
                             if(column.formatter && typeof column.formatter == "function"){
 
-                                tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
+                                tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
                             }else{
-                                tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
+                                tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
                             }
                         }
                     }else{
@@ -840,9 +890,9 @@
                             //判断是否有formatter
                             if(column.formatter && typeof column.formatter == "function"){
 
-                                tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
+                                tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
                             }else{
-                                tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
+                                tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
                             }
                         }
                     }
@@ -876,18 +926,18 @@
                             //判断是否有formatter
                             if(column.formatter && typeof column.formatter == "function"){
 
-                                tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
+                                tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
                             }else{
-                                tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
+                                tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
                             }
                         }
                     }else{
                         //判断是否有formatter
                         if(column.formatter && typeof column.formatter == "function"){
 
-                            tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
+                            tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ column.formatter(row,i,field) + '</td>';
                         }else{
-                            tableContent += '<td width="'+ field.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
+                            tableContent += '<td width="'+ column.width +'"'+' style="white-space: nowrap;text-align:'+ column.textAlign+';height:'+column.height+'"' + ' class="table-td">'+ field + '</td>';
                         }
                     }
                 }
