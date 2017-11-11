@@ -7,7 +7,7 @@
 
 一个自定义 js plugin。表格结构展示数据，支持多选checkbox，单选radio或者没有checkbox的双选，支持row的拼接、删除、刷新、插入，支持现实行号，支持分页，支持每列中的td自适应宽度或者指定宽度。
 
-## usage（使用）
+## Usage（使用）
 
 1）table用空的div元素来定义
 ```
